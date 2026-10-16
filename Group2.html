@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CLICK SMART — a student-led campaign for checking information before sharing it.">
+<title>CLICK SMART — Group2</title>
+<style>
+  :root{--ink:#111;--paper:#fff;--muted:#666;--line:#d7d7d7;--soft:#f3f3f3;--max:1120px}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.6}
+  a{color:inherit}
+  .wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+  .topline{border-bottom:1px solid var(--ink);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+  .topline .wrap{display:flex;justify-content:space-between;gap:16px;padding:10px 0}
+  header{border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:5}
+  .nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .brand{font-weight:900;letter-spacing:-.06em;font-size:1.45rem;text-decoration:none}
+  .brand span{display:inline-block;border:2px solid;padding:0 5px;margin-right:5px;letter-spacing:-.04em}
+  nav{display:flex;gap:24px;align-items:center}
+  nav a{text-decoration:none;font-size:.9rem;font-weight:700}
+  nav a:hover{text-decoration:underline;text-underline-offset:5px}
+  .menu{display:none;background:#fff;border:1px solid #111;padding:8px 11px;font-weight:700}
+  .hero{padding:76px 0 68px;border-bottom:1px solid var(--ink)}
+  .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center}
+  .eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.16em;font-weight:800;margin:0 0 20px}
+  h1{font-size:clamp(3.2rem,8vw,6.7rem);letter-spacing:-.09em;line-height:.88;margin:0;max-width:760px}
+  h1 em{font-style:normal;text-decoration:underline;text-decoration-thickness:5px;text-underline-offset:10px}
+  .hero-copy{font-size:1.08rem;color:#333;max-width:570px;margin:30px 0 25px}
+  .actions{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:12px 18px;border:1px solid var(--ink);background:var(--ink);color:#fff;text-decoration:none;font-weight:800;font-size:.9rem;cursor:pointer}
+  .btn.secondary{background:#fff;color:#111}
+  .btn:hover{background:#444;color:#fff}
+  .stamp{border:2px solid #111;aspect-ratio:1/1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:26px;transform:rotate(2deg);max-width:340px;margin:auto}
+  .stamp .big{font-weight:900;font-size:clamp(3rem,7vw,5rem);letter-spacing:-.1em;line-height:1}
+  .stamp .rule{height:2px;background:#111;width:70%;margin:18px 0}
+  .stamp p{font-size:.9rem;font-weight:700;max-width:190px;margin:0}
+  section{padding:70px 0;border-bottom:1px solid var(--line)}
+  .section-head{display:grid;grid-template-columns:.45fr 1fr;gap:35px;margin-bottom:38px}
+  .section-no{font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  h2{font-size:clamp(2rem,4.5vw,3.8rem);line-height:.98;letter-spacing:-.065em;margin:0 0 16px}
+  .section-intro{max-width:690px;margin:0;color:#444}
+  .issue-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .issue{border:1px solid #aaa;padding:23px;min-height:190px}
+  .issue .num{font-weight:900;font-size:2rem;letter-spacing:-.07em}
+  .issue h3{margin:14px 0 8px;font-size:1.08rem}
+  .issue p{margin:0;color:#555;font-size:.94rem}
+  .sift{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid #111}
+  .sift article{padding:22px;border-right:1px solid #111}
+  .sift article:last-child{border-right:0}
+  .letter{font-size:3.4rem;font-weight:900;line-height:1;letter-spacing:-.09em;border-bottom:1px solid #aaa;padding-bottom:16px;margin-bottom:16px}
+  .sift h3{font-size:1rem;margin:0 0 8px}
+  .sift p{font-size:.91rem;color:#555;margin:0}
+  .tip{margin-top:18px;padding:16px 18px;background:var(--soft);border-left:4px solid #111;font-size:.93rem}
+  .quiz-box{border:1px solid #111;padding:clamp(22px,5vw,44px);max-width:800px}
+  .progress{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:#555;font-weight:800}
+  .quiz-box h3{font-size:1.45rem;line-height:1.25;margin:18px 0}
+  .answers{display:grid;gap:10px}
+  .answer{background:#fff;border:1px solid #999;padding:13px 15px;text-align:left;font:inherit;cursor:pointer}
+  .answer:hover,.answer:focus{border-color:#111;background:#f2f2f2}
+  .answer:focus-visible,.btn:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid #777;outline-offset:3px}
+  .feedback{margin-top:18px;font-weight:700;min-height:28px}
+  .quiz-controls{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:18px}
+  .quiz-controls .btn{font:inherit}
+  .pledge{background:#111;color:#fff;padding:40px;display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}
+  .pledge h2{margin-bottom:12px}
+  .pledge p{color:#ddd;max-width:680px;margin:0}
+  .pledge .btn{background:#fff;color:#111;border-color:#fff;white-space:nowrap}
+  .pledge .btn:hover{background:#ddd}
+  .pledge-note{font-size:.86rem;color:#ccc;margin-top:12px!important}
+  .resources{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .resource{border-top:3px solid #111;padding:18px 0}
+  .resource .tag{font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:#666}
+  .resource h3{margin:9px 0;font-size:1.1rem}
+  .resource p{color:#555;font-size:.92rem;margin:0 0 14px}
+  .resource a{font-weight:800;font-size:.9rem;text-underline-offset:4px}
+  footer{padding:28px 0}
+  .foot{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;font-size:.82rem;color:#555}
+  .foot strong{color:#111}
+  .small{font-size:.82rem;color:#666}
+  @media(max-width:760px){.topline .wrap{font-size:.67rem}.nav{min-height:66px}nav{display:none;position:absolute;top:66px;left:0;right:0;padding:18px 20px;background:#fff;border-bottom:1px solid #111;flex-direction:column;align-items:flex-start;gap:15px}nav.open{display:flex}.menu{display:block}.hero{padding:55px 0}.hero-grid{grid-template-columns:1fr;gap:40px}.stamp{max-width:245px}.section-head{grid-template-columns:1fr;gap:12px}.issue-grid,.resources{grid-template-columns:1fr}.issue{min-height:0}.sift{grid-template-columns:1fr 1fr}.sift article:nth-child(2){border-right:0}.sift article:nth-child(-n+2){border-bottom:1px solid #111}.pledge{grid-template-columns:1fr;padding:28px}.pledge .btn{justify-self:start}.foot{flex-direction:column}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+  <div class="topline"><div class="wrap"><span>OBA #4: digital literacy campaign</span><span>Pause before you post.</span></div></div>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="Click Smart home"><span>CS</span> CLICK SMART</a>
+      <button class="menu" id="menuButton" aria-expanded="false" aria-controls="siteNav">MENU ☰</button>
+      <nav id="siteNav" aria-label="Main navigation">
+        <a href="#the-issue">The issue</a><a href="#sift">How to verify</a><a href="#quiz">Quick quiz</a><a href="#pledge">Take action</a>
+      </nav>
+    </div>
+  </header>
+  <main id="home">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">GNED 05 · Kilos Kabataan Advocacy</p>
+          <h1>THINK.<br><em>VERIFY.</em><br>SHARE.</h1>
+          <p class="hero-copy">One misleading post can travel faster than the truth. CLICK SMART helps students and milenial slow down, check what they see online, and share information responsibly.</p>
+          <div class="actions"><a class="btn" href="#sift">LEARN TO CHECK ↘</a><a class="btn secondary" href="#the-issue">WHY IT MATTERS</a></div>
+        </div>
+        <div class="stamp" aria-label="Campaign reminder: Don't believe every post. Check before you share.">
+          <div class="big">WAIT.</div><div class="rule"></div><p>DON'T BELIEVE EVERY POST.<br>CHECK BEFORE YOU SHARE.</p>
+        </div>
+      </div>
+    </section>
+    <section id="the-issue">
+      <div class="wrap">
+        <div class="section-head"><div class="section-no">01 / The issue</div><div><h2>Not everything online is true.</h2><p class="section-intro">Fake news and misleading content can confuse people, damage reputations, and influence decisions. A post may look convincing and still be missing context, using an old photo, or making a claim without reliable evidence.</p></div></div>
+        <div class="issue-grid">
+          <article class="issue"><div class="num">01</div><h3>It spreads quickly</h3><p>Emotional or shocking posts can get shared before anyone checks whether they are accurate.</p></article>
+          <article class="issue"><div class="num">02</div><h3>It can mislead people</h3><p>False claims can shape opinions and choices, especially when they appear to come from a trusted friend.</p></article>
+          <article class="issue"><div class="num">03</div><h3>We all have a role</h3><p>Checking a source and refusing to forward unverified content helps reduce its reach.</p></article>
+        </div>
+      </div>
+    </section>
+    <section id="sift">
+      <div class="wrap">
+        <div class="section-head"><div class="section-no">02 / The solution</div><div><h2>Use SIFT before you share.</h2><p class="section-intro">Four small checks can help you decide whether a post deserves your trust. You do not need to be an expert—you just need to pause and investigate.</p></div></div>
+        <div class="sift">
+          <article><div class="letter">S</div><h3>Stop</h3><p>Pause before reacting or forwarding. Strong emotions are a reason to slow down.</p></article>
+          <article><div class="letter">I</div><h3>Investigate the source</h3><p>Who published it? Check the account, website, author, and their credibility.</p></article>
+          <article><div class="letter">F</div><h3>Find better coverage</h3><p>Look for other reliable sources reporting the same claim independently.</p></article>
+          <article><div class="letter">T</div><h3>Trace the original</h3><p>Find the original quote, image, video, or report. Check its date and context.</p></article>
+        </div>
+        <div class="tip"><strong>Remember:</strong> A lot of likes, shares, or comments do not prove that something is true.</div>
+      </div>
+    </section>
+    <section id="quiz">
+      <div class="wrap">
+        <div class="section-head"><div class="section-no">03 / Test yourself</div><div><h2>Would you share it?</h2><p class="section-intro">Try these three everyday situations. Choose the response you think is safest, then read the feedback.</p></div></div>
+        <div class="quiz-box">
+          <div class="progress" id="quizProgress">Question 1 of 3</div>
+          <h3 id="questionText">A post says classes are cancelled tomorrow, but it has no link to an official announcement. What should you do?</h3>
+          <div class="answers" id="answerList"></div>
+          <div class="feedback" id="feedback" aria-live="polite"></div>
+          <div class="quiz-controls"><span class="small" id="scoreText">Score: 0</span><button class="btn" id="nextButton" disabled>Next question →</button></div>
+        </div>
+      </div>
+    </section>
+    <section id="pledge">
+      <div class="wrap">
+        <div class="pledge">
+          <div><p class="eyebrow">04 / Your turn</p><h2>Make your next click count.</h2><p>Before sharing a post, check the source, confirm the date, and look for reliable evidence. If you cannot verify it, do not pass it on.</p><p class="pledge-note" id="pledgeStatus" aria-live="polite">A simple habit can make our online community safer.</p></div>
+          <button class="btn" id="pledgeButton">I PLEDGE TO CHECK ✓</button>
+        </div>
+      </div>
+    </section>
+    <section id="resources">
+      <div class="wrap">
+        <div class="section-head"><div class="section-no">05 / Keep learning</div><div><h2>Check more than one source.</h2><p class="section-intro">Use established fact-checking and verification resources when a claim is confusing, surprising, or important.</p></div></div>
+        <div class="resources">
+          <article class="resource"><div class="tag">Fact-checking</div><h3>VERA Files</h3><p>A Philippine fact-checking organization that examines claims circulating in public discussion.</p><a href="https://verafiles.org/" target="_blank" rel="noopener noreferrer">Visit VERA Files ↗</a></article>
+          <article class="resource"><div class="tag">Fact-checking</div><h3>Rappler Fact Check</h3><p>Fact-check articles that investigate claims and provide context for readers.</p><a href="https://www.rappler.com/newsbreak/fact-check/" target="_blank" rel="noopener noreferrer">Visit Fact Check ↗</a></article>
+          <article class="resource"><div class="tag">Verification guide</div><h3>First Draft / SIFT</h3><p>Learn practical ways to pause, investigate a source, find coverage, and trace claims back.</p><a href="https://sift.scholarslab.org/" target="_blank" rel="noopener noreferrer">Explore SIFT ↗</a></article>
+        </div>
+        <p class="small" style="margin-top:25px">These links are starting points, not a substitute for checking the evidence behind a specific claim.</p>
+      </div>
+    </section>
+    <section class="small" style="padding:20px 0;text-align:center;"></section>
+   <section id="resources">
+      <div class="wrap">
+        <div class="section-head"><div class="section-no">06 / Members</div><div><p class="section-intro"> <p class="section-no"> Members Individually Participations</p></div></div>
+        <div style="text-align: center; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+          <article class="resource"><div class="tag">LEADER</div><h3>Erolin Kishan</h3> <div class="tag">Developer</div> <h3>Bajado Ashley</h3></article>
+          <article class="resource"><div class="tag">Researcher</div><h4>Estalane Jennifer - <b>Issue</b></h4> <h4>Baid Marvk - <b>Solution</b></h4>  <h4>Veloso Chlyne - <b>Fact Checker</b></h4> </article>
+        </div>
+        <p class="small" style="margin-top:25px">The malulupit na member</p>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap foot"><div><strong>CLICK SMART</strong><br>Think. Verify. Share.</div><div>Made by Group 2: genuine  question. mahal kaba talaga?<br>GNED 05 · Kilos Kabataan Advocacy Campaign</div><div>Pause. Check. Then share.</div></div></footer>
+<script>
+  const menuButton = document.getElementById('menuButton');
+  const siteNav = document.getElementById('siteNav');
+  menuButton.addEventListener('click', () => {
+    const open = siteNav.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(open));
+  });
+  siteNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    siteNav.classList.remove('open'); menuButton.setAttribute('aria-expanded','false');
+  }));
+
+  const questions = [
+    {q:'A post says classes are cancelled tomorrow, but it has no link to an official announcement. What should you do?',a:['Share it quickly so classmates know.','Check official school channels before sharing.','Assume it is true because many people commented.'],correct:1,why:'Correct. Check an official school announcement or contact the school before forwarding the claim.'},
+    {q:'You see a dramatic photo used in a post about a recent event. What is a good next step?',a:['Trust it if the photo looks realistic.','Read only the caption.','Search for the original image and check its date and context.'],correct:2,why:'Correct. An authentic image can still be old or used out of context. Trace it to its original source.'},
+    {q:'A claim appears on several social media accounts. Does that automatically prove it is true?',a:['No. Look for independent, reliable reporting and evidence.','Yes, if enough accounts posted it.','Yes, if someone you know shared it.'],correct:0,why:'Correct. Reposts can repeat the same unsupported claim. Seek independent sources and evidence.'}
+  ];
+  let current = 0, score = 0, answered = false;
+  const questionText = document.getElementById('questionText');
+  const answerList = document.getElementById('answerList');
+  const feedback = document.getElementById('feedback');
+  const progress = document.getElementById('quizProgress');
+  const scoreText = document.getElementById('scoreText');
+  const nextButton = document.getElementById('nextButton');
+  function renderQuestion(){
+    answered = false;
+    const item = questions[current];
+    progress.textContent = `Question ${current+1} of ${questions.length}`;
+    questionText.textContent = item.q;
+    answerList.innerHTML = '';
+    feedback.textContent = '';
+    nextButton.disabled = true;
+    nextButton.textContent = current === questions.length-1 ? 'See result →' : 'Next question →';
+    item.a.forEach((answer,index)=>{
+      const button = document.createElement('button');
+      button.className = 'answer'; button.type = 'button'; button.textContent = `${String.fromCharCode(65+index)}. ${answer}`;
+      button.addEventListener('click',()=>chooseAnswer(index));
+      answerList.appendChild(button);
+    });
+  }
+  function chooseAnswer(index){
+    if(answered) return;
+    answered = true;
+    const item = questions[current];
+    if(index === item.correct){score++;feedback.textContent = item.why;}
+    else {feedback.textContent = `Not quite. ${item.why}`;}
+    [...answerList.children].forEach((button,i)=>{button.disabled=true;if(i===item.correct)button.style.fontWeight='800';});
+    scoreText.textContent = `Score: ${score}`;
+    nextButton.disabled = false;
+  }
+  nextButton.addEventListener('click',()=>{
+    if(!answered) return;
+    if(current < questions.length-1){current++;renderQuestion();}
+    else{
+      progress.textContent = 'Quiz complete';
+      questionText.textContent = `You scored ${score} out of ${questions.length}. ${score===3?'Great work—you know how to slow down and verify.':'Keep practicing. The safest habit is to check before sharing.'}`;
+      answerList.innerHTML='';feedback.textContent='Try the SIFT steps above whenever you see a claim that matters.';
+      nextButton.textContent='Try again ↻';nextButton.disabled=false;
+      nextButton.onclick=()=>{current=0;score=0;scoreText.textContent='Score: 0';nextButton.onclick=null;renderQuestion();};
+    }
+  });
+  renderQuestion();
+
+  const pledgeButton = document.getElementById('pledgeButton');
+  const pledgeStatus = document.getElementById('pledgeStatus');
+  pledgeButton.addEventListener('click',()=>{
+    pledgeButton.textContent='PLEDGE TAKEN ✓';
+    pledgeButton.disabled=true;
+    pledgeStatus.textContent='Thanks for taking the pledge. Pause, verify, and share responsibly.';
+  });
+</script>
+</body>
+</html>
